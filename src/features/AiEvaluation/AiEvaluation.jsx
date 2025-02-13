@@ -1,10 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import person from "../../assets/personspeaking.svg";
 
 export default function AiEvaluation() {
   const [openIndex, setOpenIndex] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if script already exists
+    if (!document.querySelector('script[src="https://elevenlabs.io/convai-widget/index.js"]')) {
+      const script = document.createElement("script");
+      script.src = "https://elevenlabs.io/convai-widget/index.js";
+      script.async = true;
+      script.type = "text/javascript";
+      document.body.appendChild(script);
+    }
+  }, []);
 
   const features = [
     {
@@ -146,6 +157,8 @@ export default function AiEvaluation() {
           ))}
         </div>
       </div>
+      <elevenlabs-convai agent-id="umdCXLg9IZq6ZvJMP8N1"></elevenlabs-convai>
+
     </div>
   );
 }

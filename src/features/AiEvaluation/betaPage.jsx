@@ -1,7 +1,17 @@
-import React from "react";
+import React, {useEffect} from "react";
 import beta_img from "../../assets/beta.svg";
 
 const BetaPage = () => {
+  useEffect(() => {
+    // Check if script already exists
+    if (!document.querySelector('script[src="https://elevenlabs.io/convai-widget/index.js"]')) {
+      const script = document.createElement("script");
+      script.src = "https://elevenlabs.io/convai-widget/index.js";
+      script.async = true;
+      script.type = "text/javascript";
+      document.body.appendChild(script);
+    }
+  }, []);
   return (
     <div className="h-[90.5vh] w-full pt-28 m-0 overflow-hidden bg-gray-50 relative">
       {/* Main Content Section */}
@@ -60,6 +70,8 @@ const BetaPage = () => {
         <div className="h-[64rem] w-[64rem] bg-[#D0CEF0] opacity-[80%] rounded-full z-10 -translate-x-[25em]"></div>
         <div className="h-[64rem] w-[64rem] bg-[#E3E1F5] opacity-[60%] rounded-full z-20 -translate-x-[45em] translate-y-28"></div>
       </div>
+      <elevenlabs-convai agent-id="umdCXLg9IZq6ZvJMP8N1"></elevenlabs-convai>
+
     </div>
   );
 };
